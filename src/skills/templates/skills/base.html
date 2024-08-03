@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'skills/favicon.ico' %}">    <!-- titlening yoniga icon quyish -->
+</head>
+<body>
+<div class="menu">
+    <div class="wrap">
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'skills/logo.png' %}" alt="">
+            </a>
+
+        </div>
+        <ul>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'index' %}">Главная</a></li>
+            <li><a href="{% url 'blogs' %}">Блог</a></li>
+            <li><a href="{% static 'skills/resume.pdf' %}" target="_blank">Резюме</a></li>  <!-- pdf fayllar shunday joylanadi -->
+            <li>
+                <form action="{% url 'logoutuser' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Выйти">
+                </form>
+            </li>
+            {% else %}
+                <li><a href="{% url 'signupuser' %}">Зарегистрироваться</a></li>
+                <li><a href="{% url 'userlogin' %}">Войти</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+
+<div class="content">
+    <div class="wrap">
+        {% block content%}
+        {% endblock content%}
+    </div>
+</div>
+</body>
+</html>
