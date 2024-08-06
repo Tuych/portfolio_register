@@ -28,6 +28,7 @@
                 </form>
             </li>
             {% else %}
+                <li><a href="{% url 'home' %}">UpServis</a></li>
                 <li><a href="{% url 'signupuser' %}">Зарегистрироваться</a></li>
                 <li><a href="{% url 'userlogin' %}">Войти</a></li>
             {% endif %}
